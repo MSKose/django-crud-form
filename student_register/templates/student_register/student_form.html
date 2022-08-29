@@ -1,0 +1,152 @@
+{% extends 'student_register/index.html' %} 
+{% block content %}
+{%load widget_tweaks %} 
+
+<div class="form-body">
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Register Today</h3>
+          <p>Fill in the data below.</p>
+          {% comment %} <form method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="SUbmit">
+          </form> {% endcomment %}
+          <form class="requires-validation" method="POST" novalidate action="">
+            {% csrf_token %}
+            <div class="col-md-12">
+              {% comment %}
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                placeholder="Full Name*"
+                required
+              />
+              {% endcomment %} 
+              {% render_field form.fullname class='form-control' placeholder="Full Name*" type="text" name="fullname" required="required" %}
+              <div class="valid-feedback">Username field is valid!</div>
+              <div class="invalid-feedback">
+                Username field cannot be blank!
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              {% comment %}
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                placeholder="Phone Number*"
+                required
+              />
+              {% endcomment %} 
+              {% render_field form.mobile class='form-control' placeholder="Mobile*" type="text" name="mobile" required="required" %}
+              <div class="valid-feedback">Username field is valid!</div>
+              <div class="invalid-feedback">
+                Username field cannot be blank!
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              {% comment %} <input
+                class="form-control"
+                type="email"
+                name="email"
+                placeholder="E-mail Address*"
+                required
+              /> {% endcomment %}
+              {% render_field form.email class='form-control' placeholder="Email*" type="email" name="email" required="required" %}
+              <div class="valid-feedback">Email field is valid!</div>
+              <div class="invalid-feedback">Email field cannot be blank!</div>
+            </div>
+
+            <div class="col-md-12">
+              <select class="form-select mt-3" required>
+                {% for gender in form.gender %}
+                {% if forloop.counter == 1 %}
+                  <option selected disabled value="">Gender</option>
+                {% else %}
+                  {% render_field gender %}
+                {% endif %}
+                {% endfor %} 
+                {% comment %} {% render_field form.gender %}
+                <option selected disabled value="">Gender</option>
+                <option value="jweb">Female</option>
+                <option value="sweb">Male</option>
+                <option value="pmanager">Other</option>
+                <option value="pmanager">Prefer not to say</option>
+                {% endcomment %}
+              </select>
+              <div class="valid-feedback">You selected a position!</div>
+              <div class="invalid-feedback">Please select a position!</div>
+            </div>
+
+            <div class="d-flex gap-1">
+              <div class="col-md-5">
+                {% comment %} <input
+                  class="form-control"
+                  type="email"
+                  name="number"
+                  placeholder="Number*"
+                  required
+                /> {% endcomment %}
+
+                  {% render_field form.number class='form-control' placeholder="Number*" type="number" name="number" required="required" style='margin-top: 17px !important; border: 1px solid #fff;'%}
+
+                <div class="valid-feedback">Email field is valid!</div>
+                <div class="invalid-feedback">Email field cannot be blank!</div>
+              </div>
+
+              <div class="col-md-7">
+                <select class="form-select mt-3" required>
+                  {% comment %} <option selected disabled value="">Path</option>
+
+                  <option value="jweb">FullStack</option>
+                  <option value="sweb">Front-End</option>
+                  <option value="pmanager">Back-End</option> {% endcomment %}
+                  {% for path in form.path %}
+                  {% if forloop.counter == 1 %}
+                    <option selected disabled value="">Path</option>
+                  {% else %}
+                    {% render_field path %}
+                  {% endif %}
+                  {% endfor %} 
+                </select>
+                <div class="valid-feedback">You selected a position!</div>
+                <div class="invalid-feedback">Please select a position!</div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-1">
+              <div class="form-button mt-3 col-8">
+                <input
+                  id="submit"
+                  type="submit"
+                  value="Submit"
+                  class="btn btn-success col-12"
+                >
+                  Submit
+                >
+              </div>
+
+              <div class="form-button mt-3 col-4">
+                <button
+                  id="submit"
+                  type="submit"
+                  class="btn btn-success col-12"
+                  style="background-color: grey; border-color: grey"
+                >
+                  Back to list
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
