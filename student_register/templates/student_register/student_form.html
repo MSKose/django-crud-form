@@ -1,4 +1,4 @@
-{% extends 'student_register/index.html' %} 
+{% extends 'student_register/base.html' %} 
 {% block content %}
 {%load widget_tweaks %} 
 
@@ -64,13 +64,13 @@
             </div>
 
             <div class="col-md-12">
-              <select class="form-select mt-3" required>
+              <select name="gender" class="form-select mt-3" required>
                 {% for gender in form.gender %}
-                {% if forloop.counter == 1 %}
-                  <option selected disabled value="">Gender</option>
-                {% else %}
-                  {% render_field gender %}
-                {% endif %}
+                  {% if forloop.counter == 1 %}
+                    <option selected disabled value="">Gender</option> 
+                  {% else %}
+                    {% render_field gender %}
+                  {% endif %}
                 {% endfor %} 
                 {% comment %} {% render_field form.gender %}
                 <option selected disabled value="">Gender</option>
@@ -101,7 +101,7 @@
               </div>
 
               <div class="col-md-7">
-                <select class="form-select mt-3" required>
+                <select name="path" class="form-select mt-3" required>
                   {% comment %} <option selected disabled value="">Path</option>
 
                   <option value="jweb">FullStack</option>

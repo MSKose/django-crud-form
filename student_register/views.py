@@ -1,29 +1,39 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Student
 from .forms import PersonForm
 
-def index(request):
-    return render(request, 'student_register/index.html')
+# def home(request):
+#     return render(request, 'student_register/base.html')
 
-def student_add_update(request):
-    form = PersonForm()
-    # print(form)                             
 
-    if request.method == 'POST':
-        form = PersonForm(request.POST)
-        # print(form)  
-        if form.is_valid():
-            print(form)               
-            form.save()
-            # return HttpResponse('Your task was created')
-            return redirect('list')
 
-    context = {
-        'form' : form,
-    }
+def student_add_update(request, pk = -7):
+    if pk != -7:
+        todo = Student.objects.get(id=pk)
+        form = PersonForm(instance=todo)
 
-    return render(request, 'student_register/student_form.html', context)
+        context = {
+            'form' : form,
+        }
+        return render(request, 'student_register/student_form.html', context)
+
+    else:
+        form = PersonForm()
+
+        if request.method == 'POST':
+            form = PersonForm(request.POST)
+            # print(form)  
+            if form.is_valid():
+                print(form)               
+                form.save()
+                return redirect('list')
+        
+
+        context = {
+            'form' : form,
+        }
+
+        return render(request, 'student_register/student_form.html', context)
 
 
 

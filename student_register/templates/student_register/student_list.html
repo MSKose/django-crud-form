@@ -1,4 +1,5 @@
-{% extends 'student_register/index.html' %} {% block content %}
+{% extends 'student_register/base.html' %} 
+{% block content %}
 
 <section class="vh-100" >
     <div class="container py-5 h-100" >
@@ -8,7 +9,7 @@
             <div class="card-body p-4">
   
               <h4 class="text-center my-3 pb-3">Student list</h4>
-{% comment %}   
+              {% comment %}   
               <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
                 {% csrf_token %}
                 <div class="col-12" style="margin-top: auto;">
@@ -24,49 +25,33 @@
   
                 <div class="col-12" style="margin-top: auto;">
                   <button type="submit" class="btn btn-warning">Get tasks</button>
-                </div> {% endcomment %}
-              </form>
+                </div> 
+              </form>{% endcomment %}
   
               <table class="table mb-4">
                 <thead>
                   <tr>
                     <th scope="col">No.</th>
-                    <th scope="col">Todo item</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Path</th>
                     {% comment %} <th scope="col">Actions</th> {% endcomment %}
                     <th class='d-flex justify-content-center'>
-                        <button type="submit" class="btn btn-success">+ Add New</button>
+                        <a type="submit" class="btn btn-success" href="{% url 'form' %}">+ Add New</a>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for student in students %}
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Buy groceries for next week</td>
-                    <td>In progress</td>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{student.fullname}}</td>
+                    <td>{{student.path}}</td>
                     <td class='d-flex justify-content-center'>
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="submit" class="btn btn-primary ms-1">Edit</button>
+                      <a type="submit" class="btn btn-danger">Delete</a>
+                      <a type="submit" href="/{{student.id}}/" class="btn btn-primary ms-1">Edit</a>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Renew car insurance</td>
-                    <td>In progress</td>
-                    <td class='d-flex justify-content-center'>
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="submit" class="btn btn-primary ms-1">Edit</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Sign up for online course</td>
-                    <td>In progress</td>
-                    <td class='d-flex justify-content-center'>
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="submit" class="btn btn-primary ms-1">Edit</button>
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
   
