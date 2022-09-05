@@ -29,9 +29,7 @@ def student_add_update(request, id = -7): # equating id to -7 and then checking 
 
         if request.method == 'POST':
             form = PersonForm(request.POST)
-            # print(form)  
             if form.is_valid():
-                print(form)               
                 form.save()
                 return redirect('list')
         
@@ -41,31 +39,7 @@ def student_add_update(request, id = -7): # equating id to -7 and then checking 
         }
 
         return render(request, 'student_register/student_form.html', context)
-
-
-# def student_add_update(request, pk):
-
-#     todo = Student.objects.get(id=pk)
-
-#     try: # get pre-populated form with model instance data (for update)
-#         form = PersonForm(instance=todo.id) 
-#         print('here', form)
-#     except: # If it doesn't exist, show an empty form (for create)
-#         form = PersonForm(request.POST or None)
-#         print('here2', form)
-
-#     if request.method == 'POST':
-#         try: # Do the same as above
-#             form = PersonForm(instance=todo.id)
-#         except: # Same as above
-#             form = PersonForm(request.POST or None)
-#         if form.is_valid():
-#             form.save()
-
-
-#     return render(request, 'student_register/student_form.html', {'form':form})
-
-
+        
 
 def student_list(request):
     students = Student.objects.all()
@@ -76,5 +50,16 @@ def student_list(request):
 
     return render(request, 'student_register/student_list.html', context)
 
-def student_delete(request):
-    pass
+def student_delete(request, id):
+    student = Student.objects.get(id=id)
+    print(request.method)
+    
+    if request.method == "POST":
+        student.delete()
+        return redirect("list")
+
+    context = {
+        'student': student,
+    }
+
+    return render(request, "student_register/student_delete.html", context) 

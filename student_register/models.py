@@ -11,9 +11,9 @@ class Student(models.Model):
     ]
 
     PATH =[
-        ('FS', 'FullStack'),
-        ('FE', 'Front-End'),
-        ('BE', 'Back-End'),
+        ('FullStack', 'FullStack'),
+        ('Front-End', 'Front-End'),
+        ('Back-End', 'Back-End'),
     ]
 
     fullname = models.CharField(max_length=100)
