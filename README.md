@@ -1,5 +1,5 @@
 
-<h1 align="center">Django DRF Quiz API</h1>
+<h1 align="center">Django CRUD Form</h1>
 
 ## Table of Contents
 
@@ -9,7 +9,7 @@
 
 ## Overview
 
-This project aims to apply CRUD  fucntionality with Django ORM and Django Template Language.
+With this project I aimed to apply CRUD functionality with Django ORM and Django Template Language. I have learned a lot about utilizing [Bootstrap5](https://getbootstrap.com/) into the Django templates with the use of [django-widget-tweaks](https://pypi.org/project/django-widget-tweaks/). Also, I've gotten comfortable using the CRUD operations with Django
 
 ![screenshot](./django-crud-form.gif)
 
@@ -19,12 +19,13 @@ This project aims to apply CRUD  fucntionality with Django ORM and Django Templa
 - Bootstrap
 - HTML
 - CSS
+- django-widget-tweaks
 
 ## How To Use
 
 ```python
 # Clone this repository
-$ git clone https://github.com/MSKose/django-drf-quiz-api.git
+$ git clone https://github.com/MSKose/django-crud-form
 
 # Install dependencies
     $ python -m venv env
